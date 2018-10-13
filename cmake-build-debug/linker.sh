@@ -1,0 +1,1 @@
+ln -s /Users/mari/work/MPPC/upgrade/cosmi/conv/cmake-build-debug/data ./conv_data
