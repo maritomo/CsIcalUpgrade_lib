@@ -5,6 +5,8 @@
 #include <fstream>
 #include <dirent.h>
 #include <iostream>
+#include <algorithm>
+#include <sstream>
 
 #include "RundataManager.h"
 
@@ -80,7 +82,7 @@ bool RundataManager::Init() {
 
         // if PMT configuration file
         if(filename.substr(len - 7, 3)=="pmt") {
-            int runID = stoi(filename.substr(3, 4));
+	  int runID = stoi(filename.substr(3, 4));
             int csiID, crate, mod, ch;
 
             filename.insert(0, path);
@@ -99,7 +101,7 @@ bool RundataManager::Init() {
         }
         // if MPPC configuration file
         if(filename.substr(len - 8, 4)=="mppc") {
-            int runID = stoi(filename.substr(3, 4));
+	  int runID = stoi(filename.substr(3, 4));
             int csiID, crate, mod, ch;
 
             filename.insert(0, path);
@@ -141,8 +143,8 @@ void RundataManager::GetRunset(int runID, std::vector<int>& runset) {
         std::string buf;
 
         while(std::getline(ss, buf, ' ')) {
-            runset.push_back(stoi(buf));
-            if(runID==stoi(buf)) {
+	  runset.push_back(stoi(buf));
+	  if(runID==stoi(buf)) {
                 endflag = true;
             }
         }
