@@ -173,11 +173,32 @@ void RundataManager::GetUsedCsIID(int runID, std::vector<int>& csiID){
 }
 
 void RundataManager::GetEventTree(int csiID, std::vector<TChain*>& chain){
+    for(auto itr=chain.begin(); itr!=chain.end(); ++itr) {
+        delete *itr;
+    }
     chain.clear();
+
     const int nRunset = m_PMTconf[csiID].size();
     for(int set = 0; set<nRunset; ++set) {
         chain.emplace_back();
         chain[set] = new TChain("eventTree");
+        for(auto itr=m_PMTconf[csiID][set].runID.begin(); itr!=m_PMTconf[csiID][set].runID.end(); ++itr) {
+            TString filename = path_runfile + Form("rootfile/run%d_conv.root", *itr);
+            chain[set]->Add(filename);
+        }
+    }
+}
+
+void RundataManager::GetStatusTree(int csiID, std::vector<TChain*>& chain){
+    for(auto itr=chain.begin(); itr!=chain.end(); ++itr) {
+        delete *itr;
+    }
+    chain.clear();
+
+    const int nRunset = m_PMTconf[csiID].size();
+    for(int set = 0; set<nRunset; ++set) {
+        chain.emplace_back();
+        chain[set] = new TChain("statusTree");
         for(auto itr=m_PMTconf[csiID][set].runID.begin(); itr!=m_PMTconf[csiID][set].runID.end(); ++itr) {
             TString filename = path_runfile + Form("rootfile/run%d_conv.root", *itr);
             chain[set]->Add(filename);

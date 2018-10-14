@@ -4,10 +4,11 @@
 #include "RundataManager.h"
 
 int main() {
-    int csiID = 2260;
     std::vector<TChain*> chain;
 
-    RundataManager::GetInstance()->GetEventTree(csiID, chain);
+    RundataManager::GetInstance()->GetEventTree(2714, chain);
+    chain[0]->Print();
+    RundataManager::GetInstance()->GetEventTree(2715, chain);
     chain[0]->Print();
 
     return 0;

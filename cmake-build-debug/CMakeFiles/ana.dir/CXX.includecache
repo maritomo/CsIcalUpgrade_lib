@@ -463,6 +463,10 @@ dirent.h
 -
 iostream
 -
+algorithm
+-
+sstream
+-
 RundataManager.h
 /Users/mari/work/MPPC/upgrade/cosmi/ana/src/RundataManager.h
 
