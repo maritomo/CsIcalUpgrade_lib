@@ -33,10 +33,14 @@ class RundataManager {
     ~RundataManager();
 
     bool Init();
+
     void GetRunset(int runID, std::vector<int>& runset);
-    void GetUsedCsIID(int runID, std::vector<int>& csiID);
-    void GetEventTree(int csiID, std::vector<TChain*>& chain);
-    void GetStatusTree(int csiID, std::vector<TChain*>& chain);
+    void GetCsIID(int runID, std::vector<int>& csiID);
+
+    TChain* GetTree(int runID, const char* treename);
+    void GetTree(int csiID, const char* treename, std::vector<TChain*>& chain);
+    
+    void Clear(std::vector<TChain*>& chain);
 
   private:
     static RundataManager* m_runMan;

@@ -12,7 +12,7 @@
 
 RundataManager* RundataManager::m_runMan = nullptr;
 bool RundataManager::m_isInit = 0;
-std::string RundataManager::path_runfile = "./"; // symbolic name must be "rootfile"
+std::string RundataManager::path_runfile = "./"; // symbolic name must be "runfile"
 std::string RundataManager::path_convdata = "./"; // symbolic name must be "conv_data"
 
 RundataManager* RundataManager::GetInstance() {
@@ -39,12 +39,12 @@ bool RundataManager::Init() {
         dirent* entry = readdir(dir);
         if(entry==NULL) break;
         std::string dname = entry->d_name;
-        if(dname == "rootfile") isExist = true;
+        if(dname == "runfile") isExist = true;
     }
 
     if(!isExist) {
         std::cout << "[Error] Symbolic link: " << path_runfile
-                  << "rootfile (-> ~/conv/rootfile/) not found\n";
+                  << "runfile (-> ~/conv/runfile/) not found\n";
         return false;
     }
 
@@ -160,11 +160,11 @@ void RundataManager::GetRunset(int runID, std::vector<int>& runset) {
     std::cout << "runID not found\n";
 }
 
-void RundataManager::GetUsedCsIID(int runID, std::vector<int>& csiID){
+void RundataManager::GetCsIID(int runID, std::vector<int>& csiID){
     csiID.clear();
     for(int id = 0; id<nCSI; ++id) {
         for(auto itr=m_PMTconf[id].begin(); itr!=m_PMTconf[id].end(); ++itr) {
-            if(runID >= (*itr).runID[0] && runID <= (*itr).runID[1]) {
+	  if(runID >= *((*itr).runID.begin()) && runID <= *(--((*itr).runID.end()))) {
                 csiID.push_back(id);
                 break;
             }
@@ -172,36 +172,33 @@ void RundataManager::GetUsedCsIID(int runID, std::vector<int>& csiID){
     }
 }
 
-void RundataManager::GetEventTree(int csiID, std::vector<TChain*>& chain){
-    for(auto itr=chain.begin(); itr!=chain.end(); ++itr) {
-        delete *itr;
+TChain* RundataManager::GetTree(int runID, const char* treename){
+    TChain* chain = new TChain(treename, "");
+    std::vector<int> runset;
+    GetRunset(runID, runset);
+    for(auto itr=runset.begin(); itr!=runset.end(); ++itr) {
+        TString filename = path_runfile + Form("runfile/run%d_conv.root", *itr);
+        chain->Add(filename);
     }
-    chain.clear();
+    return chain;
+}
 
+void RundataManager::GetTree(int csiID, const char* treename, std::vector<TChain*>& chain){
+    Clear(chain);
     const int nRunset = m_PMTconf[csiID].size();
     for(int set = 0; set<nRunset; ++set) {
         chain.emplace_back();
-        chain[set] = new TChain("eventTree");
+        chain[set] = new TChain(treename, "");
         for(auto itr=m_PMTconf[csiID][set].runID.begin(); itr!=m_PMTconf[csiID][set].runID.end(); ++itr) {
-            TString filename = path_runfile + Form("rootfile/run%d_conv.root", *itr);
+            TString filename = path_runfile + Form("runfile/run%d_conv.root", *itr);
             chain[set]->Add(filename);
         }
     }
 }
 
-void RundataManager::GetStatusTree(int csiID, std::vector<TChain*>& chain){
+void RundataManager::Clear(std::vector<TChain*>& chain){
     for(auto itr=chain.begin(); itr!=chain.end(); ++itr) {
         delete *itr;
     }
     chain.clear();
-
-    const int nRunset = m_PMTconf[csiID].size();
-    for(int set = 0; set<nRunset; ++set) {
-        chain.emplace_back();
-        chain[set] = new TChain("statusTree");
-        for(auto itr=m_PMTconf[csiID][set].runID.begin(); itr!=m_PMTconf[csiID][set].runID.end(); ++itr) {
-            TString filename = path_runfile + Form("rootfile/run%d_conv.root", *itr);
-            chain[set]->Add(filename);
-        }
-    }
 }
