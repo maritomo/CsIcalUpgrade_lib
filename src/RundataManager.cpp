@@ -196,6 +196,53 @@ void RundataManager::GetTree(int csiID, const char* treename, std::vector<TChain
     }
 }
 
+void RundataManager::SetBranchAddress(TChain* chain) {
+    if(chain->GetName()!="eventTree" && chain->GetName()!="statusTree") {
+        std::cout << "[Error] tree should be \"eventTree\" or \"statusTree\"\n";
+        return;
+    }
+
+    if(chain->GetName()!="eventTree") {
+        // cosmic ray data
+        chain->SetBranchAddress("cosmi.track", m_cosmi.track);
+        chain->SetBranchAddress("cosmi.csiTrack", m_cosmi.csiTrack);
+
+        // CsI data
+        chain->SetBranchAddress("csi.isUsed", m_csi.isUsed);
+        chain->SetBranchAddress("csi.data", m_csi.data);
+        chain->SetBranchAddress("csi.ped", m_csi.ped);
+        chain->SetBranchAddress("csi.peak", m_csi.peak);
+        chain->SetBranchAddress("csi.integ", m_csi.integ);
+        chain->SetBranchAddress("csi.pt", m_csi.pt);
+        chain->SetBranchAddress("csi.cft", m_csi.cft);
+        chain->SetBranchAddress("csi.eflag", m_csi.eflag);
+        chain->SetBranchAddress("csi.TD", m_csi.TD);
+        chain->SetBranchAddress("csi.MT", m_csi.MT);
+        chain->SetBranchAddress("csi.isHit", m_csi.isHit);
+        chain->SetBranchAddress("csi.nHit", &m_csi.nHit);
+        chain->SetBranchAddress("csi.hitpos", m_csi.hitpos);
+
+        // Trigger data
+        chain->SetBranchAddress("trig.data", m_trig.data);
+        chain->SetBranchAddress("trig.ped", m_trig.ped);
+        chain->SetBranchAddress("trig.peak", m_trig.peak);
+        chain->SetBranchAddress("trig.integ", m_trig.integ);
+        chain->SetBranchAddress("trig.pt", m_trig.pt);
+        chain->SetBranchAddress("trig.cft", m_trig.cft);
+        chain->SetBranchAddress("trig.eflag", m_trig.eflag);
+        chain->SetBranchAddress("trig.TD", m_trig.TD);
+        chain->SetBranchAddress("trig.MT", m_trig.MT);
+        chain->SetBranchAddress("trig.isHit", m_trig.isHit);
+        chain->SetBranchAddress("trig.nHit", &m_trig.nHit);
+        chain->SetBranchAddress("trig.hitpos", m_trig.hitpos);
+        chain->SetBranchAddress("trig.hitID", m_trig.hitID);
+        chain->SetBranchAddress("trig.trackID", &m_trig.trackID);
+        chain->SetBranchAddress("trig.hitpos", &m_trig.TOF);
+        chain->SetBranchAddress("trig.TOF", &m_trig.range);
+        chain->SetBranchAddress("trig.range", m_trig.recX);
+    }
+}
+
 void RundataManager::Clear(std::vector<TChain*>& chain){
     for(auto itr=chain.begin(); itr!=chain.end(); ++itr) {
         delete *itr;
