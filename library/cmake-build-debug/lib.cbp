@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lib"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\local\;CMake Files\..\..\..\..\..\..\local\root\;CMake Files\..\..\..\..\..\..\local\root\pro\;CMake Files\..\..\..\..\..\..\local\root\pro\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lib">
+				<Option output="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/include"/>
+					<Add directory="/Users/mari/local/root/pro/include"/>
+					<Add directory="."/>
+					<Add directory="/Users/mari/work/cpplib/include"/>
+					<Add directory="/Applications/PicoScope6.app/Contents/Resources/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 lib"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lib/fast">
+				<Option output="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/lib" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/include"/>
+					<Add directory="/Users/mari/local/root/pro/include"/>
+					<Add directory="."/>
+					<Add directory="/Users/mari/work/cpplib/include"/>
+					<Add directory="/Applications/PicoScope6.app/Contents/Resources/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 lib/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/../../../../../../local/root/pro/cmake/ROOTConfig-version.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\local\root\pro\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/../../../../../../local/root/pro/cmake/ROOTConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\local\root\pro\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/../../../../../../local/root/pro/cmake/ROOTConfig-targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\local\root\pro\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/mari/work/MPPC/upgrade/cosmi/ana/lib/../../../../../../local/root/pro/cmake/ROOTConfig-targets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\..\local\root\pro\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
