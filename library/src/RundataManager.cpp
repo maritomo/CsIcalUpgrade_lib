@@ -232,24 +232,39 @@ void RundataManager::GetCsIIDs(int runID, std::vector<int>& csiIDs) {
     }
 }
 
-void RundataManager::GetOtherSummedCsIIDs(int runID, int csiID, std::vector<int>& csiIDs) {
-    csiIDs.clear();
-    // runset loop
-    int i_runset = 0;
-    for(auto thisMPPC: m_MPPCconf[csiID]) {
-        // if runset found
-        if(runID>=*(thisMPPC.runID.begin()) && runID<=*(--(thisMPPC.runID.end()))) {
-            // csiID loop
-            for(int k=0; k<nCSI; ++k) {
-                // if same channel (summed)
-                if(thisMPPC==m_MPPCconf[k][i_runset]) {
-                    csiIDs.push_back(csiID);
-                }
-            }
+void RundataManager::GetSummedCsIIDs(int runID, int csiID, std::vector<int>& sumCsIIDs) {
+    std::vector<int> runIDs, csiIDs;
+    GetRunIDs(runID, runIDs);
+    GetCsIIDs(runID, csiIDs);
+
+    // if csiID not found
+    if(!IsIncluded(csiID, csiIDs)) {
+        std::cout << "[Error] CsI " << csiID << " was not found in run" << runID << "\n";
+        return;
+    }
+
+    // Search ADC configuration of this MPPC
+    ADCconfig thisMPPC;
+    for(auto mppc: m_MPPCconf[csiID]) {
+        if(IsIncluded(runID, mppc.runID)) {
+            thisMPPC = mppc;
             break;
         }
-        ++i_runset;
     }
+
+    // Search summed MPPCs
+    sumCsIIDs.clear();
+    for(auto id: csiIDs) {
+        for(auto mppc: m_MPPCconf[id]) {
+            // if this run
+            if(IsIncluded(runID, mppc.runID)) {
+                if(mppc==thisMPPC) {
+                    sumCsIIDs.push_back(id);
+                }
+            }
+        }
+    }
+
 }
 
 TChain* RundataManager::GetTree(int runID, const char* treename) {
@@ -286,7 +301,6 @@ void RundataManager::SetBranchAddress(TChain* chain) {
     if(treename=="eventTree") {
         // cosmic ray data
         chain->SetBranchAddress("cosmi.track", m_cosmi.track);
-        chain->SetBranchAddress("cosmi.csiTrack", m_cosmi.csiTrack);
 
         // CsI data
         chain->SetBranchAddress("csi.isUsed", m_csi.isUsed);
@@ -302,6 +316,7 @@ void RundataManager::SetBranchAddress(TChain* chain) {
         chain->SetBranchAddress("csi.isHit", m_csi.isHit);
         chain->SetBranchAddress("csi.nHit", &m_csi.nHit);
         chain->SetBranchAddress("csi.hitpos", m_csi.hitpos);
+        chain->SetBranchAddress("csi.Edep", m_csi.Edep);
 
         // Trigger data
         chain->SetBranchAddress("trig.data", m_trig.data);
@@ -333,4 +348,27 @@ void RundataManager::Clear(std::vector<TChain*>& chain) {
         delete *itr;
     }
     chain.clear();
+}
+
+bool RundataManager::IsIncluded(int i, std::vector<int>& v) {
+    for(auto v_i: v) {
+        if(i==v_i) return true;
+    }
+    return false;
+}
+
+TCut RundataManager::SingleHitCut(int runID, int csiID) {
+    std::vector<int> sumCsIIDs;
+    GetSummedCsIIDs(runID, csiID, sumCsIIDs);
+    TCut cut;
+    for(auto id: sumCsIIDs) {
+        static int count = 0;
+        if(count>0) cut += "&&";
+        if(id == csiID) {
+            cut += Form("csi.isHit[%d]", id);
+        } else {
+            cut += Form("!csi.isHit[%d]", id);
+        }
+    }
+    return cut;
 }

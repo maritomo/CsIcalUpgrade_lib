@@ -8,9 +8,10 @@
 #include <vector>
 
 #include "TChain.h"
+#include "TCut.h"
 
 struct ADCconfig {
-    std::vector<int> runID;
+    std::vector<int> runID; // runset
     int crateID;
     int modID;
     int chID;
@@ -41,6 +42,7 @@ struct CsIData {
     Bool_t isHit[2716];
     Short_t nHit;
     Float_t hitpos[2716][3];
+    Float_t Edep[2716];
 };
 
 struct TriggerData {
@@ -103,7 +105,7 @@ class RundataManager {
     void GetRunIDs(int runID, std::vector<int>& runset);
     void GetRunIDsFromCsIID(int csiID, std::vector<int>& runset);
     void GetCsIIDs(int runID, std::vector<int>& csiID);
-    void GetOtherSummedCsIIDs(int runID, int csiID, std::vector<int>& csiIDs);
+    void GetSummedCsIIDs(int runID, int csiID, std::vector<int>& summedOtherCsIIDs);
 
     TChain* GetTree(int runID, const char* treename);
     void GetTree(int csiID, const char* treename, std::vector<TChain*>& chain);
@@ -116,6 +118,10 @@ class RundataManager {
     StatusData* GetStatusData() { return &m_status; }
 
     void Clear(std::vector<TChain*>& chain);
+    bool IsIncluded(int i, std::vector<int>& v);
+
+    TCut SingleHitCut(int runID, int csiID);
+
 
   private:
     static RundataManager* m_runMan;

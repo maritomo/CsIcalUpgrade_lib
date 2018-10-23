@@ -24,6 +24,7 @@ CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/p
 CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TChain.h
 CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TClass.h
 CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TCollection.h
+CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TCut.h
 CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TDataType.h
 CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TDatime.h
 CMakeFiles/RundataManager.dir/src/RundataManager.cpp.o: /Users/mari/local/root/pro/include/TDictionary.h

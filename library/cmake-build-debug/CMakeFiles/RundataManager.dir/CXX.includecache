@@ -11,6 +11,8 @@ vector
 -
 TChain.h
 ../include/TChain.h
+TCut.h
+../include/TCut.h
 
 /Users/mari/local/root/pro/include/DllImport.h
 
@@ -199,6 +201,10 @@ thread
 -
 unordered_set
 -
+
+/Users/mari/local/root/pro/include/TCut.h
+TNamed.h
+/Users/mari/local/root/pro/include/TNamed.h
 
 /Users/mari/local/root/pro/include/TDataType.h
 TDictionary.h
